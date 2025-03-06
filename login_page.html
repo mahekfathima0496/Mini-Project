@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tourist Website Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      background: url('https://img.freepik.com/free-vector/realistic-travel-background-with-elements_52683-77784.jpg') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      animation: bgZoom 10s infinite alternate ease-in-out;
+    }
+
+    @keyframes bgZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateX(-50px);
+      animation: fadeInLeft 1.5s ease-out forwards;
+    }
+
+    .left .caption {
+      max-width: 90%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: fadeInRight 1.5s ease-out forwards;
+    }
+
+    .login-box {
+      width: 300px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .login-box:hover {
+      box-shadow: 0px 4px 20px rgba(0, 255, 128, 0.8);
+      transform: scale(1.05);
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-box input:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
+      outline: none;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .login-box button:active {
+      box-shadow: 0 0 20px rgba(0, 255, 128, 1);
+      transform: scale(0.95);
+    }
+
+    .signup-link {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #007bff;
+      cursor: pointer;
+      display: block;
+    }
+
+    .signup-link:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInLeft {
+      0% { opacity: 0; transform: translateX(-50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      0% { opacity: 0; transform: translateX(50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="overlay"></div>
+    <div class="left">
+      <div class="caption">
+        <h1>Destination Uncovered</h1>
+        <p>Insider tips and secrets of AP</p>
+      </div>
+    </div>
+    <div class="right">
+      <div class="login-box">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <input type="text" id="username" name="username" placeholder="Username/Email Address" required />
+          <input type="password" id="password" name="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+          <div id="loginMessage" class="login-message"></div>
+        </form>
+        <span class="signup-link" onclick="redirectToSignup()">Don't have an account? Sign Up</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+      let loginMessage = document.getElementById("loginMessage");
+
+      if (username === "mahek" && password === "84") {
+        loginMessage.innerHTML = "✅ Login successful! Redirecting...";
+        loginMessage.className = "login-message success";
+        loginMessage.style.display = "block";
+        setTimeout(() => {
+          window.location.href = "main.html";
+        }, 1500);
+      } else {
+        loginMessage.innerHTML = "❌ Incorrect username or password. Try again!";
+        loginMessage.className = "login-message error";
+        loginMessage.style.display = "block";
+      }
+    });
+
+    function redirectToSignup() {
+      window.location.href = "signup.html";
+    }
+  </script>
+
+</body>
+</html>
